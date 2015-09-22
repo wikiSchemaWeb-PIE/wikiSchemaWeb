@@ -1,6 +1,7 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-include("mysql-localhost-conn.php");
+include("mysql-localhost-39-conn.php");
+//include("mysql-localhost-conn.php");
 $id = $_GET["cid"];
 $sql="select name from Category where id=" . $id;
 //echo $sql;

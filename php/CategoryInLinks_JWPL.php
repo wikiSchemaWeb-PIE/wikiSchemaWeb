@@ -1,6 +1,7 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-include("mysql-localhost-conn.php");
+//include("mysql-localhost-conn.php");
+include("mysql-localhost-39-conn.php");
 $id = $_GET["cid"];
 $mode = $_GET["m"]; # mode = '1'(father) or '2' (son)
 $sql = "";
