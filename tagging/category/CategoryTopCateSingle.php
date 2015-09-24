@@ -33,8 +33,10 @@ $ids = $row[3];
 $idArs = explode(',',$ids);
 
 function getTitle($cid) {
-mysql_select_db('JWPL_zh_050602', $con);
-$sql="select name from JWPL_zh_050602.Category where id=" . $cid;
+//mysql_select_db('JWPL_zh_050602', $con);
+//$sql="select name from JWPL_zh_050602.Category where id=" . $cid;
+mysql_select_db('JWPL_zhwiki', $con);
+$sql="select name from JWPL_zhwiki.Category where id=" . $cid;
 $result=mysql_query($sql);
 $row = mysql_fetch_row($result);
 $title=$row[0];
@@ -66,7 +68,7 @@ else {
 
 ?>
 
-<div style="padding: 100px 100px 10px;">
+<div style="padding: 20px 50px 10px;">
 		<div id="editHint">
 		<?php
 		if($_GET['alert']){
@@ -80,12 +82,29 @@ else {
 		?>
 		</div>
 </div>
-<div style="padding: 100px 100px 10px;">
+
+   <div align="center" style="padding: 50px 50px 50px;">
+		<div class="btn-group" role="group" align="center">
+<!--		<?php echo "<a class='btn btn-s btn-success' role ='button' href='CategoryTopCateSingle.php?id=2'>返回上一篇文章$lwCount</a>"; ?>-->
+		<?php
+		$btnBase = "<a class='btn btn-s btn-success' role ='button' href='CategoryTopCateSingle.php?id=";
+		if($id > 1){
+			echo $btnBase . ($id-1) . "'>返回上一篇文章</a>";
+		}
+		echo "<a class='btn btn-s btn-success' role ='button' href='CategoryTopCate.php'>返回标注主页</a>";
+		if($id < $lwCount) {
+			echo $btnBase . ($id+1) .  "'>进入下一篇文章</a>";
+		}
+		?>
+		</div>
+	</div>
+
+<div style="padding: 10px 50px 10px;">
    <div class="panel panel-warning">		
 		<div class="panel-heading">
     	  <h3 class="panel-title"><?php echo $lw ?></h3>
    	</div>
-   	<div style="padding: 50px 50px 10px;">
+   	<div style="padding: 30px 50px 10px;">
    		<table class="table table-hover table-bordered">
 				<thead>
 					<th >id</th> <td><?php echo $id?></td>
@@ -94,7 +113,7 @@ else {
 				</thead>
 			</table>
 		</div>
-   	<div style="padding: 50px 50px 10px;">
+   	<div style="padding: 30px 50px 10px;">
    		<table class="table table-hover table-bordered">
    			<tbody>
 				<?php
@@ -123,7 +142,7 @@ else {
    	
    
    <div align="center">
-   	<div style="padding: 50px 50px 10px;">
+   	<div style="padding: 30px 50px 10px;">
    		<?php echo "<form action=\"updateCateLabel.php\" class=\"form-horizontal\" method=\"get\">"; ?>
    		<div class="form-group">
    				<input class="form-control hidden" type="text" value="<?php echo $id?>"
